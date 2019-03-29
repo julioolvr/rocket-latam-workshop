@@ -4,8 +4,11 @@
 
 #[cfg(test)] mod tests;
 
-// FIXME: Declare a `GET /` route named `index` that returns `Hello, world!`.
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, world!"
+}
 
 fn main() {
-    // FIXME: Ignite a rocket, mount some routes, and launch it.
+    rocket::ignite().mount("/", routes![index]);
 }
