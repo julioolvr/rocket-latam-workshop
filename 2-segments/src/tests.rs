@@ -71,6 +71,10 @@ fn test_echo() {
     let mut res = client.get("/inner/foo/").dispatch();
     assert_eq!(res.status(), Status::Ok);
     assert_eq!(res.body_string(), Some("inner/foo".into()));
+
+    let mut res = client.get("/some/../path").dispatch();
+    assert_eq!(res.status(), Status::Ok);
+    assert_eq!(res.body_string(), Some("some/../path".into()));
 }
 
 #[test]
